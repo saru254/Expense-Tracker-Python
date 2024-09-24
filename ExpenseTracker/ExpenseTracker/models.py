@@ -6,3 +6,11 @@ from django.db.models.signals import post_save # type: ignore
 from django.dispatch import receiver # type: ignore
 from django.db.models import Sum # type: ignore
 
+#Create your models here
+
+SELECT_CATEGORY_CHOICE = [
+    ("Food", "Food"),
+    ("Shopping", "Shopping"),
+    ("Necessities","Necessities"),
+    ("")
+]
