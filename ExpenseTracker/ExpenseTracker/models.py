@@ -12,5 +12,18 @@ SELECT_CATEGORY_CHOICE = [
     ("Food", "Food"),
     ("Shopping", "Shopping"),
     ("Necessities","Necessities"),
-    ("")
+    ("Entertainment", "Entertainment"),
+    ("Other", "Other")
+]
+
+ADD_EXPENSE_CHOICE = [
+    ("Expense", "Expense"),
+    ("Income", "Income")
+]
+
+PROFESSION_CHOICES = [
+    ("Employee", "Employee"),
+    ("Business", "Business"),
+    ("Student", "Student"),
+    ("Other", "Other")
 ]
