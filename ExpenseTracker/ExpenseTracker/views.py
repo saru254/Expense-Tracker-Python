@@ -197,3 +197,5 @@ def expense_delete(request, id):
         addmoney_info.delete()
         return redirect("/index")
     return redirect("/home")
+
+#monthly,weekly,yearly expense backend.
