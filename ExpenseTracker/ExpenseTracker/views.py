@@ -58,4 +58,8 @@ def profile_update(request, id):
             user.email = request.POST["email"]
             user.userprofile.Savings = request.POST["Savings"]
             user.userprofile.income = request.POST["income"]
-            
+            user.userprofile.profession = request.POST["profession"]
+            user.userprofile.save()
+            user.save()
+            return redirect("/profile")
+        
