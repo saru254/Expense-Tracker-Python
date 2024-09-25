@@ -40,5 +40,7 @@ urlpatterns = [
     path('tables/', views.tables, name = 'tables'),
     path('expense_edit/<int:id>', views.expense_edit, name = 'expense_edit'),
     path('<int:id>/addmoney_update/', views.addmoney_update, name = "addmoney_update"),
+
+    path('expense_delete/<int:id>', views.expense_Delete, name = 'expense_delete'),
     
 ]
