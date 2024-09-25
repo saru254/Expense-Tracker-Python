@@ -112,3 +112,33 @@ def handleSignup(request):
                 profile.save()
 
                 messages.success(request, "Your account has been successfully created")
+                return redirect("/")
+            else:
+                return HttpResponse('404 - NOT FOUND')
+            return redirect('/login')
+        def handlelogin(request):
+            if request.method == 'POST':
+
+                loginuname = request.POST["loginuname"]
+                loginpassword1 = request.POST["loginpassword1"]
+                user = authenticate(username =loginuname, 
+                                    password = loginpassword1)
+                
+                if user is not None:
+                    dj_login(request, user)
+                    request.session['is_logged'] = True
+                    user = request.user.id
+                    request.session ["user_id"] = user
+                    messages.success(request, "Successfully logged in")
+                    return redirect('/index')
+                else:
+                    messages.error(request, "Invalid Credentials, Please try again")
+                    return redirect("/")
+                return HttpResponse('404 - NOT FOUND')
+            def handleLogout(request):
+                del request.session['is_logged']
+                del request.session["user_id"]
+                logout(request)
+                messages.success(request, "Successfully logged out")
+                return redirect('home')
+            
