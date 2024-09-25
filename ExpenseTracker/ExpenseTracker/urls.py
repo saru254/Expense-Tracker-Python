@@ -51,5 +51,6 @@ urlpatterns = [
     path('search/', views.search, name = "search"),
     path('int:id>/profile_edit/', views.profile_edit, name = "profile_edit"),
     path('<int:id>profile_update/', views.profile_update, name  = "profile_update"),
-    
+    path('info/', views.info, name = "info"),
+    path('info_year/', views.info_year, name = "info_year")
 ]
