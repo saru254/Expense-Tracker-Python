@@ -49,5 +49,7 @@ urlpatterns = [
     path('weekly/', views.weekly, name = 'weekely'),
     path('check/', views.check, name = "check"),
     path('search/', views.search, name = "search"),
+    path('int:id>/profile_edit/', views.profile_edit, name = "profile_edit"),
+    path('<int:id>profile_update/', views.profile_update, name  = "profile_update"),
     
 ]
