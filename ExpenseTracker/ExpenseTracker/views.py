@@ -34,3 +34,17 @@ def index(request):
 
         return render(request, 'home/index.html', context)
     return redirect('home')
+
+def addmoney(request):
+    return render(request, 'hoe/addmoney.html')
+
+def profile(request):
+    if request.session.has_key('is_logged'):
+        return render (request, 'home/profile.html')
+    return redirect('/home')
+
+def profile_edit(request,id):
+    if request.session.has_key('is_logged'):
+        add = User.objects.get(id=id)
+        return render(request, 'home/profile_edit.html',{'add':add})
+    return redirect("/home")
