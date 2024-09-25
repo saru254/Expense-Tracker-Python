@@ -85,3 +85,30 @@ def handleSignup(request):
                               profession = profession,
                               income = income)
         if request.method =='POST':
+            try:
+                user_exists = User.objects.get(username = request.POST['uname'])
+                messages.error(request, "Username already taken")
+                return redirect("/register")
+            except User.DoesNotExist:
+                if len(uname)>15:
+                    messages.error(request, "Username must be max 15 characters")
+
+                    return redirect("/register")
+                if not uname.isalnum():
+                    messages.error(request, "Username should only contain letters and numbers, Please try again")
+                    return redirect("/register")
+                if pass1 != pass2:
+                    messages.error(request, "Password do not match, Please try again")
+                    return redirect("/register")
+                user = User.objects.create_user(uname, email,pass1)
+                user.first_name = fname
+                user.last_name = lname
+                user.email = email
+                #profile save
+
+                user.save()
+
+                profile.user = user
+                profile.save()
+
+                messages.success(request, "Your account has been successfully created")
