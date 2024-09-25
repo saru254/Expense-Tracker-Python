@@ -13,6 +13,7 @@ from django.http import JsonResponse
 import datetime
 from django.utils import timezone
 
+#Login and index function
 def home(request):
     if request.session.has_key('is_logged'):
         return redirect('/index')
@@ -35,6 +36,7 @@ def index(request):
         return render(request, 'home/index.html', context)
     return redirect('home')
 
+#Other functions
 def addmoney(request):
     return render(request, 'hoe/addmoney.html')
 
@@ -49,6 +51,7 @@ def profile_edit(request,id):
         return render(request, 'home/profile_edit.html',{'add':add})
     return redirect("/home")
 
+#Updating Profile
 def profile_update(request, id):
     if request.session.has_key('is_logged'):
         if request.method == "POST":
@@ -62,4 +65,23 @@ def profile_update(request, id):
             user.userprofile.save()
             user.save()
             return redirect("/profile")
-        
+    return redirect("/home")
+
+#signup, login, logout backend
+
+def handleSignup(request):
+    if request.method == 'POST':
+
+        uname = request.POST["uname"]
+        fname = request.POST["fname"]
+        lname = request.POST['lname']
+        email = request.POST["email"]
+        profession = request.POST['profession']
+        Savings = request.POST['Savings']
+        income = request.POST['income']
+        pass1 = request.POST["pass1"]
+        pass2 = request.POST["pass2"]
+        profile = UserProfile(Savings = Savings,
+                              profession = profession,
+                              income = income)
+        if request.method =='POST':
