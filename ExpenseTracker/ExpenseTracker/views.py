@@ -189,4 +189,11 @@ def expense_edit(request, id):
         user_id = request.session["user_id"]
         user1 = User.objects.get.(id=user_id)
     return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
-return redirect("/home")
+    return redirect("/home")
+
+def expense_delete(request, id):
+    if request.session.has_key('is_logged'):
+        addmoney_info = Addmoney_info.objects.get(id=id)
+        addmoney_info.delete()
+        return redirect("/index")
+    return redirect("/home")
