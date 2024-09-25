@@ -42,5 +42,12 @@ urlpatterns = [
     path('<int:id>/addmoney_update/', views.addmoney_update, name = "addmoney_update"),
 
     path('expense_delete/<int:id>', views.expense_Delete, name = 'expense_delete'),
+    path('profile/', views.profile, name ='profile'),
+    path('expesne_month/', views.expense_month, name ='expense_month'),
+    path('stats/', views.stats, name = 'stats'),
+    path('expense_week/', views.expense_week, name = 'expense_week'),
+    path('weekly/', views.weekly, name = 'weekely'),
+    path('check/', views.check, name = "check"),
+    path('search/', views.search, name = "search"),
     
 ]
