@@ -1,17 +1,17 @@
 #importing modules
 
-from django.shortcuts import render, HttpResponse, redirect
-from django.contrib import messages
-from django.contrib.auth import authenticate, logout
-from django.contrib.auth import login as dj_login
-from django.contrib.auth.models import User
+from django.shortcuts import render, HttpResponse, redirect # type: ignore
+from django.contrib import messages # type: ignore
+from django.contrib.auth import authenticate, logout # type: ignore
+from django.contrib.auth import login as dj_login # type: ignore
+from django.contrib.auth.models import User # type: ignore
 from .models import Addmoney_info, UserProfile
-from django.contrib.sessions.models import Session
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Sum
-from django.http import JsonResponse
+from django.contrib.sessions.models import Session # type: ignore
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger # type: ignore
+from django.db.models import Sum # type: ignore
+from django.http import JsonResponse # type: ignore
 import datetime
-from django.utils import timezone
+from django.utils import timezone # type: ignore
 
 #Login and index function
 def home(request):
@@ -185,9 +185,9 @@ def addmoney_submission(request):
 #Expense Edit and Expense Delete Backend
 def expense_edit(request, id):
     if request.session.has_key('is_logged'):
-        Addmoney_info = Addmoney_info.objects.get(id=id)
+        addmoney_info = Addmoney_info.objects.get(id=id)
         user_id = request.session["user_id"]
-        user1 = User.objects.get.(id=user_id)
+        user1 = User.objects.get(id=user_id)
     return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
     return redirect("/home")
 
