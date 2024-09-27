@@ -199,3 +199,37 @@ def expense_delete(request, id):
     return redirect("/home")
 
 #monthly,weekly,yearly expense backend.
+
+def expense_month(request):
+    todays_date = datetime.date.today()
+    one_month_ago = todays_date-datetime.timedelta(days=30)
+    user_id = request.session["user_id"]
+    user1 = User.objects.get(id=user_id)
+
+    addmoney= Addmoney_info.objects.filter(user=user1, Date__gte = one_month_ago, Date__lte=todays_date)
+
+    finalrep = {}
+
+    def get_Category(addmoney_info):
+        return addmoney_info.Category
+    Category_list = list(set(map(get_Category,addmoney)))
+     
+    def get_expense_category_amount(Category,add_money): 
+        quantity = 0
+        filtered_by_category = addmoney.filter(Category = Category, add_money="Expense")
+        for item in filtered_by_category:
+            quantity+=item.quantity
+            return quantity
+        for x in addmoney:
+            for y in Category_list:
+                finalrep[y] = get_expense_category_amount(y, "Expense")
+                return JsonResponse ({'expense_category_data': finalrep}, safe=False)
+    
+    def stats(request):
+        if request.session.has_key('is_logged'):
+            todays_date = datetime.date.today()
+            one_month_ago = todays_date-datetime.timedelta(days=30)
+            user_id = request.session["user_id"]
+            user1 = User.objects.get(id=user_id)
+
+            addmoney_info = Addmoney_info.objects.filter(user=user1,Date__gte=one_month_ago, Date__lte=todays_date)
